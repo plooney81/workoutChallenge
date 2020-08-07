@@ -73,13 +73,17 @@ html {
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     text-align: center;
-    text-shadow: 0 0.2rem 0.3rem #D44C35;
-    /* justify-content: center;
-    justify-self: center;
-    align-self: center;
-    align-items: center; */
-    padding: 2rem;
+    text-shadow: 0 0.2rem 0.2rem #D44C35;
+    padding: 1rem;
+}
 
+h2.challenge {
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.2rem;
+    padding: .25rem;
+    text-shadow: none;
 }
 
 .weekdays {
