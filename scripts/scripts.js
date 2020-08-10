@@ -11,3 +11,10 @@ let currentDayOfMonth = rightNow.getDate();
 let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", 
 "Thursday", "Friday", "Saturday"];
 let dayOfWeek = dayNames[rightNow.getDay()];
+
+// getMonth() returns the current month from 0-11
+// 0 being January and 11 being December
+let monthNames = ["January", "February", "March", "April", "May", 
+"June", "July", "August", "September", "October", "November", "December"];
+let monthOfYear = monthNames[rightNow.getMonth()];
+
