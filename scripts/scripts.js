@@ -23,4 +23,4 @@ let monthOfYear = monthNames[rightNow.getMonth()];
 // for now it is just hard entered.
 let challengeEndDate = new Date("August 31, 2020 23:59:59");
 let challengeDayDiff = Math.floor((challengeEndDate.getTime() - rightNow.getTime()) / (1000 * 60 * 60 * 24));
-alert(challengeDayDiff);
+
