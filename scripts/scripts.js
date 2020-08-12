@@ -44,8 +44,8 @@ for (let i = 14; i < 55; i++) {
 } 
 
 // find out how many divs are inside the class named days
-// let howManyDivs = document.getElementsById("d").getElementsByTagName("DIV").length;
-// alert(howManyDivs);
+let howManyDivs = document.getElementsByClassName("days")[0].getElementsByTagName("DIV");
+let actualNumb = howManyDivs.length;
 
 // Automatically changes the month of the year
 let changeMonthDate = document.getElementsByClassName("date")[0].getElementsByTagName("h2")[0];
