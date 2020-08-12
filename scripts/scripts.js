@@ -3,6 +3,7 @@ let rightNow = new Date();
 
 // getDate() returns the day of the month from 1-31
 let dayOfMonth = rightNow.getDate();
+dayOfMonth = dayOfMonth.toString();
 
 /*
 getDay() returns the current day of the week from 0-6
@@ -31,12 +32,13 @@ let challengeEndDate = new Date("August 31, 2020 23:59:59");
 let challengeDayDiff = Math.floor((challengeEndDate.getTime() - rightNow.getTime()) / (1000 * 60 * 60 * 24));
 
 // divs 15 (so index 14) - div 55 (so index 54)
-for (var i = 14; i < 55; i++) {
-    if (document.getElementsByTagName("DIV")[i] === dayOfMonth) {
+for (let i = 14; i < 55; i++) {
+    let cName = document.getElementsByTagName("DIV")[i].className;
+    if ((document.getElementsByTagName("DIV")[i].innerHTML === dayOfMonth) && (cName !== "prev-date" && cName !== "next-date")) {  
         document.getElementsByTagName("DIV")[i].className = "today";
     }
 } 
 
 // find out how many divs are inside the class named days
-let howManyDivs = document.getElementsById("d").getElementsByTagName("DIV").length;
-alert(howManyDivs);
+// let howManyDivs = document.getElementsById("d").getElementsByTagName("DIV").length;
+// alert(howManyDivs);
