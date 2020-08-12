@@ -2,8 +2,7 @@
 let rightNow = new Date();
 
 // getDate() returns the day of the month from 1-31
-let dayOfMonth = rightNow.getDate();
-dayOfMonth = dayOfMonth.toString();
+let dayOfMonth = rightNow.getDate().toString();
 
 /*
 getDay() returns the current day of the week from 0-6
@@ -24,6 +23,11 @@ let monthNames = ["January", "February", "March", "April", "May",
 let monthOfYear = monthNames[rightNow.getMonth()];
 
 /*
+getFullYear() returns the current year
+*/
+let currentYear = rightNow.getFullYear().toString();
+
+/*
 calculates the amount of days left in the challenge.
 will eventually be a user input for the challenge end date
 for now it is just hard entered.
@@ -42,3 +46,12 @@ for (let i = 14; i < 55; i++) {
 // find out how many divs are inside the class named days
 // let howManyDivs = document.getElementsById("d").getElementsByTagName("DIV").length;
 // alert(howManyDivs);
+
+// Automatically changes the month of the year
+let changeMonthDate = document.getElementsByClassName("date")[0].getElementsByTagName("h2")[0];
+changeMonthDate.innerHTML = monthOfYear.toUpperCase();
+
+// Automatically changes the day of the week, then gives the month again, then the 
+// number date of the month, and finally the year.
+let changeActualDate = document.getElementsByClassName("date")[0].getElementsByTagName("p")[0];
+changeActualDate.innerHTML = dayOfWeek + " " + monthOfYear + " " + dayOfMonth + ", " +  currentYear;
