@@ -35,17 +35,19 @@ for now it is just hard entered.
 let challengeEndDate = new Date("August 31, 2020 23:59:59");
 let challengeDayDiff = Math.floor((challengeEndDate.getTime() - rightNow.getTime()) / (1000 * 60 * 60 * 24));
 
+
 // divs 15 (so index 14) - div 55 (so index 54)
-for (let i = 14; i < 55; i++) {
-    let cName = document.getElementsByTagName("DIV")[i].className;
-    if ((document.getElementsByTagName("DIV")[i].innerHTML === dayOfMonth) && (cName !== "prev-date" && cName !== "next-date")) {  
-        document.getElementsByTagName("DIV")[i].className += " today";
+// first finds the div with the class name days
+// then finds how many different divs are in it so we can loop through all of them
+let daysDiv = document.getElementsByClassName("days")[0].getElementsByTagName("DIV");
+let actualNumb = daysDiv.length;
+
+for (let i = 0; i < daysDiv.length; i++) {
+    let cName = daysDiv[i].className;
+    if ((daysDiv[i].innerHTML === dayOfMonth) && (cName !== "prev-date" && cName !== "next-date")) {  
+        daysDiv[i].className += " today";
     }
 } 
-
-// find out how many divs are inside the class named days
-let howManyDivs = document.getElementsByClassName("days")[0].getElementsByTagName("DIV");
-let actualNumb = howManyDivs.length;
 
 // Automatically changes the month of the year
 let changeMonthDate = document.getElementsByClassName("date")[0].getElementsByTagName("h2")[0];
