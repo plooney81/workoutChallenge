@@ -39,7 +39,7 @@ let challengeDayDiff = Math.floor((challengeEndDate.getTime() - rightNow.getTime
 for (let i = 14; i < 55; i++) {
     let cName = document.getElementsByTagName("DIV")[i].className;
     if ((document.getElementsByTagName("DIV")[i].innerHTML === dayOfMonth) && (cName !== "prev-date" && cName !== "next-date")) {  
-        document.getElementsByTagName("DIV")[i].className = "today";
+        document.getElementsByTagName("DIV")[i].className += " today";
     }
 } 
 
