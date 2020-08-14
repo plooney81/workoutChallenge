@@ -1,5 +1,5 @@
 // creates a new Date object
-let rightNow = new Date(2020, 2, 20);
+let rightNow = new Date(2020, 2, 1);
 
 // getDate() returns the day of the month from 1-31
 let dayOfMonth = rightNow.getDate().toString();
@@ -85,6 +85,36 @@ for (let i = 0; i < daysDiv.length; i++) {
         numberDaysHidden += 1;
     } else if (daysDiv[i].className === "next-date displayNone") {
         numberDaysHidden += 1;
+    } else if (daysDiv[i].className !== "displayNone" && daysDiv[i].className !== "prev-date displayNone" && daysDiv[i].className !== "next-date displayNone") {
+        daysDiv[i].className += " unhidden"
+    }
+}
+
+// We need to align the first day of the month to the right column
+// we already assigned all of the elements that were showing from above the class name unhidden
+// we first target these elements, then we can loop through them to see if the on thats unhidden and not a prev-date or future-date
+let daysUnhiddenElem = document.getElementsByClassName(" unhidden");
+for (let i = 0; i < daysUnhiddenElem.length; i++) {
+    if (daysUnhiddenElem[i].innerHTML === "1") {
+        let tempDayWeek = new Date(currentYear, monthNumb, 1).getDay() - 1; //gets the day of the week for the first of the month
+        let pointer = i;
+        if (tempDayWeek === -1) {
+            tempDayWeek = 6; // if its -1 then it should be sunday, which in our calendar is the 6th item
+        }
+        if (pointer < tempDayWeek) { // if the index is less than actual day of the week then we need to add items
+            while (pointer !== tempDayWeek) {
+                let unhidePrev = document.getElementsByClassName("prev-date displayNone");
+                unhidePrev[unhidePrev.length - 1].className = "prev-date"
+                pointer++;
+            }
+        } else if (pointer > tempDayWeek) { // if the index is greater than the actual day of the week, then we need to delete items
+            while (pointer !== tempDayWeek) {
+                let hidePrev = document.getElementsByClassName("prev-date unhidden");
+                hidePrev[0].className = "prev-date displayNone";
+                pointer--;
+            }
+        }
+        break;
     }
 }
 
