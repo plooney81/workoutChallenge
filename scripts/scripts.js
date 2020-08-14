@@ -83,13 +83,17 @@ for (let i = 0; i < daysDiv.length; i++) {
     } else if (daysDiv[i].className !== "prev-date" && daysDiv[i].className !== "next-date" && daysDiv[i].innerHTML > currentMonthDays) {
         daysDiv[i].className += " displayNone";
         numberDaysHidden += 1;
-    } else if (daysDiv[i].className === "next-date" && daysDiv[i].className === "displayNone") {
+    } else if (daysDiv[i].className === "next-date displayNone") {
         numberDaysHidden += 1;
     }
 }
 
+// if we don't have 42 days on the calendar, then we loop through the elements just with the class name next-date and displayNone
+// We have some in there that are allready hidden from initiation, so we can begin unhiding them to get the 42 days.
+// only loops while there are less than 42 days
 let i = 0;
-
 while ((daysDiv.length - numberDaysHidden) < 42) {
-    let nextDaysEl = document.getElementsByClassName("next-date");
+    let nextDaysEl = document.getElementsByClassName("next-date displayNone");
+    nextDaysEl[i].className = "next-date"; // gets rid of the displayNone class
+    i++;
 }
