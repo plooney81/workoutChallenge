@@ -1,5 +1,5 @@
 // creates a new Date object
-let rightNow = new Date(2020, 2, 1);
+let rightNow = new Date();
 
 // getDate() returns the day of the month from 1-31
 let dayOfMonth = rightNow.getDate().toString();
@@ -87,6 +87,7 @@ for (let i = 0; i < daysDiv.length; i++) {
         numberDaysHidden += 1;
     } else if (daysDiv[i].className !== "displayNone" && daysDiv[i].className !== "prev-date displayNone" && daysDiv[i].className !== "next-date displayNone") {
         daysDiv[i].className += " unhidden"
+        // alert(daysDiv[i].innerHTML + " " + daysDiv[i].className);
     }
 }
 
@@ -104,7 +105,7 @@ for (let i = 0; i < daysUnhiddenElem.length; i++) {
         if (pointer < tempDayWeek) { // if the index is less than actual day of the week then we need to add items
             while (pointer !== tempDayWeek) {
                 let unhidePrev = document.getElementsByClassName("prev-date displayNone");
-                unhidePrev[unhidePrev.length - 1].className = "prev-date"
+                unhidePrev[unhidePrev.length - 1].className = "prev-date unhidden"
                 pointer++;
             }
         } else if (pointer > tempDayWeek) { // if the index is greater than the actual day of the week, then we need to delete items
@@ -118,12 +119,40 @@ for (let i = 0; i < daysUnhiddenElem.length; i++) {
     }
 }
 
+daysUnhiddenElem = document.getElementsByClassName(" unhidden");
+
 // if we don't have 42 days on the calendar, then we loop through the elements just with the class name next-date and displayNone
 // We have some in there that are allready hidden from initiation, so we can begin unhiding them to get the 42 days.
 // only loops while there are less than 42 days
-let i = 0;
-while ((daysDiv.length - numberDaysHidden) < 42) {
-    let nextDaysEl = document.getElementsByClassName("next-date displayNone");
-    nextDaysEl[i].className = "next-date"; // gets rid of the displayNone class
-    i++;
+let newPointer;
+while (daysUnhiddenElem.length > 42) {
+    daysUnhiddenElem[daysUnhiddenElem.length - 1].className = "next-date displayNone"
+}
+
+daysUnhiddenElem = document.getElementsByClassName(" unhidden");
+
+// gets the index of the last day of the month in the calendar
+for (let i = 0; i < daysUnhiddenElem.length; i++) {
+    if (daysUnhiddenElem[i].innerHTML === currentMonthDays.toString() && daysUnhiddenElem[i].className 
+    !== "prev-date unhidden") {
+        newPointer = i;
+        break;
+    }
+}
+
+// if the index is less than 35 then we get rid of all the values on the bottom row
+// it also adds a new class to the calendar div which corresponds to a small change in height
+// since we no longer need that space for the bottom row (which was just deleted)
+// ----------------------------------------------------------------------------------------------
+// if it is greater than or equal to 35, then we add more until the length of the unhidden is 42
+if (newPointer < 35) {
+    while (daysUnhiddenElem.length > 35) {
+        daysUnhiddenElem[daysUnhiddenElem.length - 1].className = "next-date displayNone"
+    }
+    document.getElementsByClassName("calendar")[0].className += " newCalHeight";
+} else if (newPointer >= 35) {
+    while (daysUnhiddenElem.length < 42) {
+        let getTo42 = document.getElementsByClassName("next-date displayNone");
+        getTo42[0].className = "prev-date unhidden";
+    }
 }

@@ -142,3 +142,7 @@ h2.challenge {
 .displayNone {
     display: none !important;
 }
+
+.newCalHeight {
+    height: 47rem;
+}
