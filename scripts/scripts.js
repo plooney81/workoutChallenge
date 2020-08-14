@@ -1,5 +1,5 @@
 // creates a new Date object
-let rightNow = new Date();
+let rightNow = new Date(2020, 2, 20);
 
 // getDate() returns the day of the month from 1-31
 let dayOfMonth = rightNow.getDate().toString();
@@ -20,7 +20,8 @@ getMonth() returns the current month from 0-11
 */
 let monthNames = ["January", "February", "March", "April", "May", 
 "June", "July", "August", "September", "October", "November", "December"];
-let monthOfYear = monthNames[rightNow.getMonth()];
+let monthNumb = rightNow.getMonth();
+let monthOfYear = monthNames[monthNumb];
 
 /*
 getFullYear() returns the current year
@@ -57,3 +58,38 @@ changeMonthDate.innerHTML = monthOfYear.toUpperCase();
 // number date of the month, and finally the year.
 let changeActualDate = document.getElementsByClassName("date")[0].getElementsByTagName("p")[0];
 changeActualDate.innerHTML = dayOfWeek + " " + monthOfYear + " " + dayOfMonth + ", " +  currentYear;
+
+// Function that finds out how many days are in a month
+// Day Zero is the last day in the previous month (why we add 1 to the month number)
+function getDaysInMonth(month, year) {
+    return new Date(year, month+1, 0).getDate();
+}
+
+// finds the number of days in the previous month and the current month
+let previousMonthDays = getDaysInMonth(monthNumb - 1, currentYear);
+let currentMonthDays = getDaysInMonth(monthNumb, currentYear);
+
+// again we loop through all of the elements in the div days
+// if the element has a class of prev-date and 
+// if the inner html is greater than the previous months number of days, then
+// they are assigned the class of displayNone which essentially deletes them (because they shouldn't exist)
+// then we look at the elements for the current month if the innerHTML of these elements are greater than 
+// currentMonthDays, then they will be assigned the same class of displayNone as well.
+let numberDaysHidden = 0;
+for (let i = 0; i < daysDiv.length; i++) {
+    if (daysDiv[i].className === "prev-date" && daysDiv[i].innerHTML > previousMonthDays) {
+        daysDiv[i].className += " displayNone";
+        numberDaysHidden += 1;
+    } else if (daysDiv[i].className !== "prev-date" && daysDiv[i].className !== "next-date" && daysDiv[i].innerHTML > currentMonthDays) {
+        daysDiv[i].className += " displayNone";
+        numberDaysHidden += 1;
+    } else if (daysDiv[i].className === "next-date" && daysDiv[i].className === "displayNone") {
+        numberDaysHidden += 1;
+    }
+}
+
+let i = 0;
+
+while ((daysDiv.length - numberDaysHidden) < 42) {
+    let nextDaysEl = document.getElementsByClassName("next-date");
+}
