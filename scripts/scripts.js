@@ -1,5 +1,5 @@
 // creates a new Date object
-let rightNow = new Date(2020, 6);
+let rightNow = new Date();
 
 function renderCalendar() {
     // reinitialize all classes for the elements
