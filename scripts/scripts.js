@@ -1,7 +1,7 @@
 // creates a new Date object
 let rightNow = new Date();
 
-function renderCalendar() {
+function renderCalendar(argument1) {
     // reinitialize all classes for the elements
     let reinit = document.getElementsByClassName("days")[0].getElementsByTagName("DIV")
     for (let i = 0; i < reinit.length; i++) {
@@ -48,13 +48,15 @@ function renderCalendar() {
     // then finds how many different divs are in it so we can loop through all of them
     let daysDiv = document.getElementsByClassName("days")[0].getElementsByTagName("DIV");
     let actualNumb = daysDiv.length;
-
-    for (let i = 0; i < daysDiv.length; i++) {
-        let cName = daysDiv[i].className;
-        if ((daysDiv[i].innerHTML === dayOfMonth) && (cName !== "prev-date" && cName !== "next-date")) {  
-            daysDiv[i].className = "today";
+    //fix this line underneath
+    if (argument1 === "start") {
+        for (let i = 0; i < daysDiv.length; i++) {
+            let cName = daysDiv[i].className;
+            if ((daysDiv[i].innerHTML === dayOfMonth) && (cName !== "prev-date" && cName !== "next-date")) {  
+                daysDiv[i].className = "today";
+            }
         }
-    } 
+    }
 
     // Automatically changes the month of the year
     let changeMonthDate = document.getElementsByClassName("date")[0].getElementsByTagName("h2")[0];
@@ -167,14 +169,14 @@ function renderCalendar() {
 }
 
 // function for when the left and right arrow button are pressed
-function lastMonth() {
+function lastMonth("notStart") {
     rightNow.setMonth(rightNow.getMonth() - 1);
     renderCalendar();
 }
 
-function nextMonth() {
+function nextMonth("notStart") {
     rightNow.setMonth(rightNow.getMonth() + 1)
     renderCalendar();
 }
 
-renderCalendar();
+renderCalendar("start");
